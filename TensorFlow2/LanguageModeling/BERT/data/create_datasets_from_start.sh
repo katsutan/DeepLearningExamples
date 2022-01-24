@@ -18,6 +18,10 @@ export BERT_PREP_WORKING_DIR=/workspace/bert_tf2/data
 to_download=${1:-"all"}
 pretrained_to_download=${2:-"wiki_only"} # By default, we don't download BooksCorpus dataset due to recent issues with the host server
 
+if [ "$to_download" = "config" ] ; then
+    python3 ${BERT_PREP_WORKING_DIR}/bertPrep.py --action download --dataset google_pretrained_weights
+fi
+
 if [ "$to_download" = "all" ] || [ "$to_download" = "squad" ] ; then
     #SQUAD
     python3 ${BERT_PREP_WORKING_DIR}/bertPrep.py --action download --dataset google_pretrained_weights  # Includes vocab
